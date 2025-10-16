@@ -13,9 +13,9 @@ public class HttpRequestManager {
                     .uri(URI.create(protocol + url))
                     .method(requestMethod, HttpRequest.BodyPublishers.noBody())
                     .build();
-            return httpClient
-                    .send(request, HttpResponse.BodyHandlers.ofString())
-                    .body();
+
+            HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+            return protocol.split("://")[0].toUpperCase() + " response code : " + response.statusCode() + " | Response Body : " + response.body();
         } catch (Exception e) {
             return "Error: " + e.getMessage();
         }

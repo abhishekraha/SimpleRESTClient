@@ -39,7 +39,7 @@ public class InputContainer {
 
     private Node addRequestMethodDropdown() {
 
-        requestMethodDropdown.getItems().addAll("GET", "POST", "PUT", "DELETE", "PATCH");
+        requestMethodDropdown.getItems().addAll("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS", "HEAD");
         requestMethodDropdown.setValue("GET");
         return requestMethodDropdown;
     }
