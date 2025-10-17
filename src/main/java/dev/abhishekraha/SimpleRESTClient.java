@@ -1,7 +1,7 @@
 package dev.abhishekraha;
 
 
-import dev.abhishekraha.layout.RootContainer;
+import dev.abhishekraha.containers.RootContainer;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
