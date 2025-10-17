@@ -1,4 +1,4 @@
-package dev.abhishekraha.network;
+package dev.abhishekraha.controller.network;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -7,17 +7,16 @@ import java.net.http.HttpResponse;
 
 public class HttpRequestManager {
 
-    public static String sendRequest(String url, String requestMethod, String protocol) {
+    public static HttpResponse<String> sendRequest(String url, String requestMethod, String protocol) {
         try (HttpClient httpClient = HttpClient.newHttpClient()) {
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create(protocol + url))
                     .method(requestMethod, HttpRequest.BodyPublishers.noBody())
                     .build();
 
-            HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-            return protocol.split("://")[0].toUpperCase() + " response code : " + response.statusCode() + " | Response Body : " + response.body();
+            return httpClient.send(request, HttpResponse.BodyHandlers.ofString());
         } catch (Exception e) {
-            return "Error: " + e.getMessage();
+            throw new RuntimeException("Failed to send HTTP request", e);
         }
     }
 }
