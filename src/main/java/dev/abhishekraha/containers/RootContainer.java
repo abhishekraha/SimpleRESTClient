@@ -2,6 +2,7 @@ package dev.abhishekraha.containers;
 
 import dev.abhishekraha.containers.components.InputContainer;
 import dev.abhishekraha.containers.components.RequestResponseContainer;
+import dev.abhishekraha.containers.components.ResetFieldsContainer;
 import dev.abhishekraha.containers.util.AspectRatioUtil;
 import javafx.scene.layout.VBox;
 
@@ -12,6 +13,7 @@ public class RootContainer {
 
         rootContainer.getChildren().add(InputContainer.getContainer());
         rootContainer.getChildren().add(RequestResponseContainer.getContainer());
+        rootContainer.getChildren().add(ResetFieldsContainer.getContainer());
 
         AspectRatioUtil.setContainerAspectRatio(rootContainer, 0.6);
 

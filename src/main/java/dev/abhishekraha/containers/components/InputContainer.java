@@ -16,6 +16,7 @@ import java.net.http.HttpResponse;
 public class InputContainer {
     private static final HBox inputContainer = ContainerTemplate.newHorizontalContainer();
 
+    private static final Button sendButton = new Button("Send");
     private static final ComboBox<String> requestMethodDropdown = new ComboBox<>();
     private static final ComboBox<String> protocolDropdown = new ComboBox<>();
     private static final TextField urlInputField = new TextField();
@@ -58,7 +59,6 @@ public class InputContainer {
     }
 
     private static Node setupSendButton() {
-        Button sendButton = new Button("Send");
         sendButton.setOnAction(event -> {
             HttpResponse<String> httpResponse = HttpRequestManager.sendRequest(urlInputField.getText(), requestMethodDropdown.getValue(), protocolDropdown.getValue());
 
@@ -66,5 +66,9 @@ public class InputContainer {
 
         });
         return sendButton;
+    }
+
+    public static TextField getUrlInputTextField() {
+        return urlInputField;
     }
 }

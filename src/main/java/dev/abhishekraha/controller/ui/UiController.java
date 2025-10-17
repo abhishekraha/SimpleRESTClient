@@ -1,5 +1,6 @@
 package dev.abhishekraha.controller.ui;
 
+import dev.abhishekraha.containers.components.InputContainer;
 import dev.abhishekraha.containers.components.RequestResponseContainer;
 
 import java.net.http.HttpResponse;
@@ -28,6 +29,7 @@ public class UiController {
     }
 
     public static void resetAllTextFields() {
+        InputContainer.getUrlInputTextField().clear();
         RequestResponseContainer.getResponseHeaderBox().clear();
         RequestResponseContainer.getResponseBodyBox().clear();
         RequestResponseContainer.getHistoryBox().clear();
