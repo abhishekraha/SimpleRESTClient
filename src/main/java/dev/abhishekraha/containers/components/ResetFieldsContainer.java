@@ -8,22 +8,25 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 
 public class ResetFieldsContainer {
-    private static final HBox resetFieldsContainer = ContainerTemplate.newHorizontalContainer();
-    private static final Button resetButton = new Button("Reset");
+    private final Button resetButton;
+    private final HBox resetFieldsContainer;
+    private final UiController uiController;
 
-    private ResetFieldsContainer() {
+    public ResetFieldsContainer(UiController uiController) {
+        this.uiController = uiController;
+
+        resetFieldsContainer = ContainerTemplate.newHorizontalContainer();
+        resetButton = new Button("Reset");
     }
 
-    public static HBox getContainer() {
+    public HBox getContainer() {
         resetFieldsContainer.setAlignment(Pos.BOTTOM_RIGHT);
         resetFieldsContainer.getChildren().add(setupResetButton());
         return resetFieldsContainer;
     }
 
-    private static Node setupResetButton() {
-        resetButton.setOnAction(event -> {
-            UiController.resetAllTextFields();
-        });
+    private Node setupResetButton() {
+        resetButton.setOnAction(event -> uiController.resetAllFields());
         return resetButton;
     }
 

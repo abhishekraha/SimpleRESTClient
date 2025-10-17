@@ -9,22 +9,28 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
 public class RequestResponseContainer {
-    private static final HBox requestResponseContainer = ContainerTemplate.newHorizontalContainer();
+    private final HBox requestResponseContainer;
 
-    // This contains the Request/Response containers vertically
-    private static final VBox verticalContainer1 = ContainerTemplate.newVerticalContainer();
+    private final TextArea historyBox;
+    private final TextArea responseHeaderBox;
+    private final TextArea responseBodyBox;
 
-    // this contains the history
-    private static final VBox verticalContainer2 = ContainerTemplate.newVerticalContainer();
+    private final VBox verticalContainer1;
+    private final VBox verticalContainer2;
 
-    private static final TextArea responseHeaderBox = new TextArea();
-    private static final TextArea responseBodyBox = new TextArea();
-    private static final TextArea historyBox = new TextArea();
 
-    private RequestResponseContainer() {
+    public RequestResponseContainer() {
+
+        historyBox = new TextArea();
+        responseHeaderBox = new TextArea();
+        responseBodyBox = new TextArea();
+        requestResponseContainer = ContainerTemplate.newHorizontalContainer();
+        verticalContainer1 = ContainerTemplate.newVerticalContainer();
+        verticalContainer2 = ContainerTemplate.newVerticalContainer();
+
     }
 
-    public static HBox getContainer() {
+    public HBox getContainer() {
 
         verticalContainer1.getChildren().add(setupResponseHeaderBox());
         verticalContainer1.getChildren().add(setupResponseBodyBox());
@@ -40,36 +46,36 @@ public class RequestResponseContainer {
         return requestResponseContainer;
     }
 
-    private static Node setupResponseHeaderBox() {
+    private Node setupResponseHeaderBox() {
         responseHeaderBox.setEditable(false);
         HBox.setHgrow(responseHeaderBox, Priority.ALWAYS);
         VBox.setVgrow(responseHeaderBox, Priority.ALWAYS);
         return responseHeaderBox;
     }
 
-    private static Node setupResponseBodyBox() {
+    private Node setupResponseBodyBox() {
         responseBodyBox.setEditable(false);
         HBox.setHgrow(responseBodyBox, Priority.ALWAYS);
         VBox.setVgrow(responseBodyBox, Priority.ALWAYS);
         return responseBodyBox;
     }
 
-    private static Node setupHistoryBox() {
+    private Node setupHistoryBox() {
         historyBox.setEditable(false);
         HBox.setHgrow(historyBox, Priority.ALWAYS);
         VBox.setVgrow(historyBox, Priority.ALWAYS);
         return historyBox;
     }
 
-    public static TextArea getResponseHeaderBox() {
+    public TextArea getResponseHeaderBox() {
         return responseHeaderBox;
     }
 
-    public static TextArea getResponseBodyBox() {
+    public TextArea getResponseBodyBox() {
         return responseBodyBox;
     }
 
-    public static TextArea getHistoryBox() {
+    public TextArea getHistoryBox() {
         return historyBox;
     }
 
