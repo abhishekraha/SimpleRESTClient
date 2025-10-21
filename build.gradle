@@ -12,7 +12,6 @@ repositories {
 }
 
 dependencies {
-    // Add any additional dependencies here
 }
 
 javafx {
