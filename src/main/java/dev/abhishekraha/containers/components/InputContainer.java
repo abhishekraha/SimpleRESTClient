@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 
@@ -71,6 +72,7 @@ public class InputContainer {
 
         urlInputField.setOnKeyReleased(keyEvent -> {
 
+            // Don't do this check if the string doesn;t start with http.....
             if (urlInputField.getText().startsWith("http")) {
                 if (urlInputField.getText().startsWith(HTTPS)) {
                     protocolDropdown.setValue(HTTPS);
@@ -81,9 +83,13 @@ public class InputContainer {
                 }
             }
 
-            if (keyEvent.getCode().toString().equals("ENTER")) {
-                HttpResponse<String> httpResponse = HttpRequestManager.sendRequest(urlInputField.getText(), requestMethodDropdown.getValue(), protocolDropdown.getValue());
-                httpResponseConsumer.accept(httpResponse);
+            if (keyEvent.getCode() == KeyCode.ENTER) {
+                HttpRequestManager.sendRequestAsyncAndConsumeOnFxThread(
+                        urlInputField.getText(),
+                        requestMethodDropdown.getValue(),
+                        protocolDropdown.getValue(),
+                        httpResponseConsumer
+                );
             }
         });
 
@@ -91,10 +97,12 @@ public class InputContainer {
     }
 
     private Node setupSendButton() {
-        sendButton.setOnAction(event -> {
-            HttpResponse<String> httpResponse = HttpRequestManager.sendRequest(urlInputField.getText(), requestMethodDropdown.getValue(), protocolDropdown.getValue());
-            httpResponseConsumer.accept(httpResponse);
-        });
+        sendButton.setOnAction(event -> HttpRequestManager.sendRequestAsyncAndConsumeOnFxThread(
+                urlInputField.getText(),
+                requestMethodDropdown.getValue(),
+                protocolDropdown.getValue(),
+                httpResponseConsumer
+        ));
         return sendButton;
     }
 
