@@ -2,4 +2,4 @@
 
 A lightweight Java REST client for performing API calls
 
-![SimpleRESTClient.png](SimpleRESTClient.png)
+![SimpleRESTClient-v1.0.png](SimpleRESTClient-v1.0.png)

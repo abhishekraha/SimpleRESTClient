@@ -1,7 +1,6 @@
 package dev.abhishekraha.containers.components;
 
 import dev.abhishekraha.containers.templates.ContainerTemplate;
-import dev.abhishekraha.containers.util.AspectRatioUtil;
 import javafx.scene.Node;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.HBox;
@@ -37,11 +36,11 @@ public class RequestResponseContainer {
 
         verticalContainer2.getChildren().add(setupHistoryBox());
 
-        AspectRatioUtil.setContainerAspectRatio(verticalContainer1, 0.6);
-        AspectRatioUtil.setContainerAspectRatio(verticalContainer2, 0.4);
+//        AspectRatioUtil.setContainerAspectRatio(verticalContainer1, 0.6);
+//        AspectRatioUtil.setContainerAspectRatio(verticalContainer2, 0.4);
 
         requestResponseContainer.getChildren().add(verticalContainer1);
-        requestResponseContainer.getChildren().add(verticalContainer2);
+//        requestResponseContainer.getChildren().add(verticalContainer2);
 
         return requestResponseContainer;
     }
